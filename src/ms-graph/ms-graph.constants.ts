@@ -1,0 +1,1 @@
+export const MS_GRAPH_SERVICE_OPTIONS: string = 'MS_GRAPH_SERVICE_OPTIONS';

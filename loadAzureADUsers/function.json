@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "trigger",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */3 * * * *"
+    }
+  ],
+  "scriptFile": "../dist/loadAzureADUsers/index.js"
+}

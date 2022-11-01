@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package staff;
+
+service StaffService {
+  // Create a staff
+  rpc CreateStaff (CreateStaffRequest) returns (CreateStaffResponse);
+
+  // Upsert many staffs
+  rpc CreateManyStaffs (CreateManyStaffsRequest) returns (CreateManyStaffsResponse);
+
+  // Get profile of logged in user
+  rpc GetMyProfile (GetMyProfileRequest) returns (Staff);
+
+  // Get a single staff
+  rpc GetStaff (GetStaffRequest) returns (Staff);
+
+  // List staffs
+  rpc ListStaffs (ListStaffsRequest) returns (ListStaffsResponse);
+}
+
+// The message to represent a Staff
+message Staff {
+  int32 id = 1;
+  string email = 2;
+  string displayName = 3;
+  string firstName = 4;
+  string lastName = 5;
+  string idpId = 6;
+}
+
+// The request message for creating a staff
+message CreateStaffRequest {
+  string email = 1;
+  string displayName = 2;
+  string firstName = 3;
+  string lastName = 4;
+  string idpId = 5;
+}
+
+// The response message for creating a staff
+message CreateStaffResponse {
+  Staff staff = 1;
+}
+
+// The request messaage to creating multiple staffs
+message CreateManyStaffsRequest {
+  repeated CreateStaffRequest staffs = 1;
+}
+
+// The response message to creating multiple staffs
+message CreateManyStaffsResponse {
+  string message = 1;
+}
+
+// The request message to get logged in user's profile
+message GetMyProfileRequest {
+  string idpId = 1;
+}
+
+// The request message for getting a staff
+message GetStaffRequest {
+  int32 staff_id = 1;
+}
+
+// The request message for listing staffs
+message ListStaffsRequest {
+  int32 current_page = 1;
+  int32 page_size = 2; 
+  string order_by = 3;
+  string filter = 4;
+}
+
+// The message to represent page information when returing a list
+message PageInfo {
+  int32 total = 1;
+  int32 current_page = 2;
+  int32 total_filtered = 3;
+}
+
+// The response message for listing staffs
+message ListStaffsResponse {
+  repeated Staff staffs = 1;
+  PageInfo page_info = 2;
+}
