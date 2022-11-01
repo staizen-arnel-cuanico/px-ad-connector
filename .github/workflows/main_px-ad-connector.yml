@@ -36,7 +36,7 @@ jobs:
         run: pnpm install
         
       - name: Pnpm Build
-        run: pnpm run build
+        run: pnpm run func:build
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
